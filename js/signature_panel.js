@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
    * 檢查是否超出 Canvas 範圍
    * @param {Object} event 事件物件
    */
-  function checkOverRegion(event) {
+  function checkIsOverRegion(event) {
     var targetCanvas = event.target;
     var targetCanvasRect = event.target.getBoundingClientRect();
 
@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', function () {
     var targetCanvas = event.target;
     var targetCanvasContext = targetCanvas.getContext('2d');
 
-    if (checkOverRegion(event) && isDrawing) {
+    if (checkIsOverRegion(event) && isDrawing) {
       alert('請於白色方框內簽名！');
       targetCanvasContext.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
       stopDrawing();
@@ -176,7 +176,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     } else {
       $.fancybox.close();
-      
+
     }
 
   });
