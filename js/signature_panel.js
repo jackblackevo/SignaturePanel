@@ -174,6 +174,9 @@ window.addEventListener('DOMContentLoaded', function () {
     if (!checkIsLandscape()) {
       showPopup();
 
+    } else {
+      $.fancybox.close();
+      
     }
 
   });
