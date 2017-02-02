@@ -24,8 +24,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
     targetCanvasContext.beginPath();
 
-    // TODO 再確認為什麼不是：event.touches.item(0)
-    targetCanvasContext.moveTo(event.pageX - targetCanvas.offsetLeft, event.pageY - targetCanvas.offsetTop);
+    var eventType = event.type;
+
+    if (eventType === 'touchstart') {
+      targetCanvasContext.moveTo(event.touches.item(0).pageX - targetCanvas.offsetLeft, event.touches.item(0).pageY - targetCanvas.offsetTop);
+    } else {
+      targetCanvasContext.moveTo(event.pageX - targetCanvas.offsetLeft, event.pageY - targetCanvas.offsetTop);
+
+    }
 
   }
 
@@ -87,8 +93,20 @@ window.addEventListener('DOMContentLoaded', function () {
       var targetCanvas = event.target;
       var targetCanvasContext = targetCanvas.getContext('2d');
 
-      var x = event.pageX - targetCanvas.offsetLeft;
-      var y = event.pageY - targetCanvas.offsetTop;
+      var eventType = event.type;
+      var x;
+      var y;
+
+      if (eventType === 'touchmove') {
+        x = event.touches.item(0).pageX - targetCanvas.offsetLeft;
+        y = event.touches.item(0).pageY - targetCanvas.offsetTop;
+
+      } else {
+        x = event.pageX - targetCanvas.offsetLeft;
+        y = event.pageY - targetCanvas.offsetTop;
+
+      }
+
 
       targetCanvasContext.lineTo(x, y);
       targetCanvasContext.stroke();
@@ -133,10 +151,12 @@ window.addEventListener('DOMContentLoaded', function () {
 
   }
 
-  // 
-  var query = window.matchMedia('(orientation:landscape)');
-  if (!query.matches) {
-    showPopup();
+  /**
+   * 檢查是否為橫式螢幕
+   */
+  function checkIsLandscape() {
+    var query = window.matchMedia('(orientation:landscape)');
+    return query.matches;
 
   }
 
@@ -151,8 +171,17 @@ window.addEventListener('DOMContentLoaded', function () {
   mainCanvas.addEventListener('touchmove', draw);
 
   window.addEventListener('orientationchange', function () {
-    showPopup();
+    if (!checkIsLandscape()) {
+      showPopup();
+
+    }
 
   });
+
+  // 頁面載入完畢即檢查螢幕方向
+  if (!checkIsLandscape()) {
+    showPopup();
+
+  }
 
 });
