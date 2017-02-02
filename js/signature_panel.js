@@ -215,4 +215,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
   }
 
+  // 將 Canvas 背景填滿白色
+  mainCanvasContext.fillStyle = 'white';
+  mainCanvasContext.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+
 });
