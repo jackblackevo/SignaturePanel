@@ -119,6 +119,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
       }
 
+      // 筆畫顏色設定為藍色
+      targetCanvasContext.strokeStyle = 'blue';
 
       targetCanvasContext.lineTo(x, y);
       targetCanvasContext.stroke();
