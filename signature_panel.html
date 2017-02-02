@@ -11,7 +11,19 @@
 
 <body>
   <div id="msg">請橫放手機</div>
-  <canvas id="mainCanvas" width="550" height="300"></canvas>
+  <section id="description" class="horizontalCenter">
+    <div>
+      <span>Description</span>
+      <p>Please sign here...</p>
+    </div>
+  </section>
+  <section id="canvasArea" class="horizontalCenter">
+    <canvas id="mainCanvas" width="550" height="250"></canvas>
+  </section>
+  <section id="btnArea" class="horizontalCenter">
+    <button id="cleanCanvasBtn">清除</button>
+    <button id="getCanvasImgBtn" download="signature.png">確認</button>
+  </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
   <script src="js/signature_panel.js"></script>

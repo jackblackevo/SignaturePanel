@@ -5,6 +5,9 @@ window.addEventListener('DOMContentLoaded', function () {
   /** 是否繪圖的 flag */
   var isDrawing = false;
 
+  var cleanCanvasBtn = document.getElementById('cleanCanvasBtn');
+  var getCanvasImgBtn = document.getElementById('getCanvasImgBtn');
+
   /**
    * 開始繪圖
    * @param {Object} event 事件物件
@@ -55,6 +58,16 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
+   * 清除 Canvas
+   * @param {Object} targetCanvas 目標 Canvas
+   */
+  function cleanCanvas(targetCanvas) {
+    var targetCanvasContext = targetCanvas.getContext('2d');
+    targetCanvasContext.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
+
+  }
+
+  /**
    * 停止繪圖
    */
   function stopDrawing() {
@@ -70,11 +83,10 @@ window.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
 
     var targetCanvas = event.target;
-    var targetCanvasContext = targetCanvas.getContext('2d');
 
     if (checkIsOverRegion(event) && isDrawing) {
       alert('請於白色方框內簽名！');
-      targetCanvasContext.clearRect(0, 0, targetCanvas.width, targetCanvas.height);
+      cleanCanvas(targetCanvas);
       stopDrawing();
 
     }
@@ -169,6 +181,22 @@ window.addEventListener('DOMContentLoaded', function () {
   mainCanvas.addEventListener('touchstart', startDrawing);
   mainCanvas.addEventListener('touchend', stopDrawing);
   mainCanvas.addEventListener('touchmove', draw);
+
+  cleanCanvasBtn.addEventListener('click', function () {
+    cleanCanvas(mainCanvas);
+
+  });
+  getCanvasImgBtn.addEventListener('click', function () {
+    var downloadUrl = mainCanvas.toDataURL("image/png");
+
+    var downloadLink = document.createElement('a');
+    downloadLink.href = downloadUrl;
+    downloadLink.download = 'signature.png';
+
+    downloadLink.click();
+
+
+  });
 
   window.addEventListener('orientationchange', function () {
     if (!checkIsLandscape()) {

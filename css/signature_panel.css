@@ -6,14 +6,32 @@ body {
   display: none;
 }
 
+.horizontalCenter {
+  display: flex;
+  justify-content: center;
+}
+
+#description>* {
+  background-color: white;
+  width: 550px;
+}
+
+#canvasArea {
+  margin: 10px;
+}
+
 #mainCanvas {
-  width: 550;
-  height: 300;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -152px 0 0 -278px;
+  width: 550px;
+  height: 250px;
   background-color: white;
   border-style: solid;
   border-color: blue;
+}
+
+#btnArea>button {
+  background-color: white;
+}
+
+#btnArea :nth-child(even) {
+  margin-left: 10px;
 }
