@@ -32,6 +32,6 @@ body {
   background-color: white;
 }
 
-#btnArea :nth-child(even) {
+#btnArea :nth-child(n+1) {
   margin-left: 10px;
 }
