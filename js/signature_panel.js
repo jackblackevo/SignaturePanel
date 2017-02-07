@@ -189,7 +189,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   });
   getCanvasImgBtn.addEventListener('click', function () {
-    var downloadUrl = mainCanvas.toDataURL("image/png");
+    var downloadUrl = mainCanvas.toDataURL('image/png');
 
     var downloadLink = document.createElement('a');
     downloadLink.href = downloadUrl;
