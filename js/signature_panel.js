@@ -106,6 +106,9 @@ window.addEventListener('DOMContentLoaded', function () {
      * 開啟或關閉 fancybox
      */
     switchPopup: function (isOn) {
+      // 一率先嘗試關閉 fancybox，避免 $.fancybox.isOpen 沒有正確偵測
+      $.fancybox.close();
+
       if (isOn) {
         $.fancybox.open({
           href: '#msg',
@@ -121,9 +124,6 @@ window.addEventListener('DOMContentLoaded', function () {
             }
           }
         });
-
-      } else if (model._checkPopupOpen()) {
-        $.fancybox.close();
 
       }
 
@@ -157,7 +157,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var controller = {
     checkIsLandscape: function () {
-      var query = window.matchMedia('(orientation:landscape)');
+      var query = window.matchMedia('(orientation: landscape)');
 
       model.switchPopup(!query.matches);
 
@@ -234,7 +234,13 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   (function pageInit() {
-    window.addEventListener('orientationchange', function () {
+    // window.addEventListener('orientationchange', function () {
+    //   controller.checkIsLandscape();
+
+    // });
+
+    var portraitOrientationCheck = window.matchMedia("(orientation: portrait)");
+    portraitOrientationCheck.addListener(function () {
       controller.checkIsLandscape();
 
     });
