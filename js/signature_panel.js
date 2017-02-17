@@ -20,10 +20,8 @@ window.addEventListener('DOMContentLoaded', function () {
      * @param {number} userPositionY 輸入位置（螢幕）垂直
      */
     _checkIsOverRegion: function (userPositionX, userPositionY) {
-      var canvasRect = model._canvas.getBoundingClientRect();
-
-      var xOnCanvas = userPositionX - canvasRect.left;
-      var yOnCanvas = userPositionY - canvasRect.top;
+      var xOnCanvas = userPositionX - model._canvas.offsetLeft - model._canvas.style.borderWidth;
+      var yOnCanvas = userPositionY - model._canvas.offsetTop - model._canvas.style.borderWidth;
 
       return ((xOnCanvas < 0 || xOnCanvas > model._canvas.width) || (yOnCanvas < 0 || yOnCanvas > model._canvas.height));
 
