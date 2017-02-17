@@ -119,8 +119,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
       }
 
-      // 筆畫顏色設定為藍色
-      targetCanvasContext.strokeStyle = 'blue';
+      // 筆畫顏色設定為黑色
+      targetCanvasContext.strokeStyle = 'black';
 
       targetCanvasContext.lineTo(x, y);
       targetCanvasContext.stroke();
@@ -220,5 +220,8 @@ window.addEventListener('DOMContentLoaded', function () {
   // 將 Canvas 背景填滿白色
   mainCanvasContext.fillStyle = 'white';
   mainCanvasContext.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+
+  // 線條設定為 1.5 倍
+  mainCanvasContext.lineWidth = 1.5;
 
 });
