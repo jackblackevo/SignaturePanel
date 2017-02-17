@@ -16,8 +16,8 @@ window.addEventListener('DOMContentLoaded', function () {
     /**
      * 檢查簽名是否超出 Canvas 區域
      * 
-     * @param {number} userPositionX 輸入位置（螢幕）水平
-     * @param {number} userPositionY 輸入位置（螢幕）垂直
+     * @param {number} userPositionX 輸入位置（頁面）水平座標
+     * @param {number} userPositionY 輸入位置（頁面）垂直座標
      */
     _checkIsOverRegion: function (userPositionX, userPositionY) {
       var xOnCanvas = userPositionX - model._canvas.offsetLeft - model._canvas.style.borderWidth;
